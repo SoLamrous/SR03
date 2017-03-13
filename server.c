@@ -72,7 +72,7 @@ else 	{while(1) {
 					{
 						printf("\n close connection socket\n");
 						close(newsd);
-						
+						kill(getpid(),0);
 						exit(0);
 					}
 					else
