@@ -70,9 +70,10 @@ else 	{while(1) {
 				{
 					if(strcmp("fin", objet.id) == 0)
 					{
-						printf("\n close connection socket\n");
+						printf("\n close connection socket , le PID: %d\n", getpid());
 						close(newsd);
-						kill(getpid(),0);
+						signal(SIGCHLD, handler);			
+						if (kill(getpid(),0)==-1) printf("kill error");
 						exit(0);
 					}
 					else
@@ -96,13 +97,6 @@ else 	{while(1) {
 	break;
 	
 	default:
-		newsd =accept(sd,0,0);
-		if(newsd==-1)
-		{
-		printf("ERREUR accept");
-		exit( -1);
-		}
-		childPID = fork();
 	break;
 	}}
 	close(sd);}

@@ -31,7 +31,8 @@ int main(int argc, char *argv[])
     printf("Erreur connect");
     exit(-1);
   }
-    send(sd, &tabobj[0],sizeof(objet),0);
+    if(send(sd, &tabobj[0],sizeof(objet),0)==-1)
+	 printf("erreur send");
 
 	rece=recv(sd,&objet,sizeof(objet),0);
 
